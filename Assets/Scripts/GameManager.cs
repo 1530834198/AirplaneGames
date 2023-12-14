@@ -1,133 +1,70 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-[AddComponentMenu("Game/GameManager")]
+
+[AddComponentMenu("MyGame/GameManager")]
 public class GameManager : MonoBehaviour {
 
-    public static GameManager Instance = null;
+    public static GameManager Instance;
 
-    // ÓÎÏ·µÃ·Ö
-    public int m_score = 0;
+    public Transform m_canvas_main;  // æ˜¾ç¤ºåˆ†æ•°çš„UIç•Œé¢
+    public Transform m_canvas_gameover;  // æ¸¸æˆå¤±è´¥UIç•Œé¢
+    public Text m_text_score;  // å¾—åˆ†UIæ–‡å­—
+    public Text m_text_best;  // æœ€é«˜åˆ†UIæ–‡å­—
+    public Text m_text_life;  // ç”Ÿå‘½UIæ–‡å­—
 
-    // ÓÎÏ·×î¸ßµÃ·Ö
-    public static int m_hiscore = 0;
+    protected int m_score = 0; //å¾—åˆ†
+    public static int m_hiscore = 0;  //æœ€é«˜åˆ†
+    protected Player m_player; //ä¸»è§’
+    
+    public AudioClip m_musicClip;  // èƒŒæ™¯éŸ³ä¹
+    protected AudioSource m_Audio;  // å£°éŸ³æº
 
-    // µ¯Ò©ÊıÁ¿
-    public int m_ammo = 100;
-
-    // ÓÎÏ·Ö÷½Ç
-    Player m_player;
-
-    // UIÎÄ×Ö
-    Text txt_ammo;
-    Text txt_hiscore;
-    Text txt_life;
-    Text txt_score;
-    Button button_restart;
-	// Use this for initialization
-	void Start () {
+    void Start () {
 
         Instance = this;
 
-        // »ñµÃÖ÷½Ç
-        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        m_Audio = this.gameObject.AddComponent<AudioSource>();  // ä½¿ç”¨ä»£ç æ·»åŠ éŸ³æ•ˆç»„ä»¶
+        m_Audio.clip = m_musicClip;
+        m_Audio.loop = true;
+        m_Audio.Play();
+        
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // è·å–ä¸»è§’
 
-        // »ñµÃUIÎÄ×Ö
-        GameObject uicanvas = GameObject.Find("Canvas");
-        foreach (Transform t in uicanvas.transform.GetComponentsInChildren<Transform>())
+        m_text_score = m_canvas_main.transform.Find("Text_score").GetComponent<Text>();  // è·å¾—Uiæ§ä»¶
+        m_text_best = m_canvas_main.transform.Find("Text_best").GetComponent<Text>();
+        m_text_life = m_canvas_main.transform.Find("Text_life").GetComponent<Text>();
+        m_text_score.text = string.Format("åˆ†æ•°  {0}", m_score); // åˆå§‹åŒ–UIåˆ†æ•°
+        m_text_best.text = string.Format("æœ€é«˜åˆ† {0}", m_hiscore); // åˆå§‹åŒ–UIæœ€é«˜åˆ†
+        m_text_life.text = string.Format("ç”Ÿå‘½ {0}", m_player.m_life); // åˆå§‹åŒ–UIç”Ÿå‘½å€¼
+
+        var restart_button = m_canvas_gameover.transform.Find("Button_restart").GetComponent<Button>();  // è·å–é‡æ–°å¼€å§‹æ¸¸æˆæŒ‰é’®
+        restart_button.onClick.AddListener(delegate ()  // æŒ‰é’®äº‹ä»¶å›è°ƒ
         {
-
-            if (t.name.CompareTo("txt_ammo") == 0)
-            {
-                txt_ammo = t.GetComponent<Text>();
-            }
-            else if (t.name.CompareTo("txt_hiscore") == 0)
-            {
-                txt_hiscore = t.GetComponent<Text>();
-                txt_hiscore.text = "High Score " + m_hiscore;
-            }
-            else if (t.name.CompareTo("txt_life") == 0)
-            {
-                txt_life = t.GetComponent<Text>();
-            }
-            else if (t.name.CompareTo("txt_score") == 0)
-            {
-                txt_score = t.GetComponent<Text>();
-            }
-            else if (t.name.CompareTo("Restart Button") == 0)
-            {
-                button_restart = t.GetComponent<Button>();
-                button_restart.onClick.AddListener(delegate (){//ÉèÖÃÖØĞÂ¿ªÊ¼ÓÎÏ·°´Å¥ÊÂ¼ş
-                    // ¶ÁÈ¡µ±Ç°¹Ø¿¨
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                });
-                button_restart.gameObject.SetActive(false);  // ÓÎÏ·³õÆÚÒş²ØÖØĞÂ¿ªÊ¼ÓÎÏ·°´Å¥
-            }
-        }
-
-       
-	}
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // é‡æ–°å¼€å§‹å½“å‰å…³å¡
+        });
+        m_canvas_gameover.gameObject.SetActive(false);  // é»˜è®¤éšè—æ¸¸æˆå¤±è´¥UI
     }
-
-    //void OnGUI()
-    //{
-    //    if (m_player.m_life <= 0)
-    //    {
-    //        // ¾ÓÖĞÏÔÊ¾ÎÄ×Ö
-    //        GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-
-    //        // ¸Ä±äÎÄ×Ö´óĞ¡
-    //        GUI.skin.label.fontSize = 40;
-
-    //        // ÏÔÊ¾Game Over
-    //        GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "Game Over");
-
-    //        // ÏÔÊ¾ÖØĞÂÓÎÏ·°´Å¥
-    //         GUI.skin.label.fontSize = 30;
-    //        if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.75f,300,40),"Try again"))
-    //        {
-    //            Application.LoadLevel(Application.loadedLevelName);
-    //        }
-    //    }
-    //}
-
-    // ¸üĞÂ·ÖÊı
-    public void SetScore(int score)
+ 
+    // å¢åŠ åˆ†æ•°
+    public void AddScore( int point )
     {
-        m_score+= score;
+        m_score += point;
 
-        if (m_score > m_hiscore)
+        // æ›´æ–°é«˜åˆ†çºªå½•
+        if (m_hiscore < m_score)
             m_hiscore = m_score;
-
-        txt_score.text = "Score <color=yellow>" + m_score  + "</color>";;
-        txt_hiscore.text = "High Score " + m_hiscore;
-      
+        m_text_score.text = string.Format("åˆ†æ•°  {0}", m_score);
+        m_text_best.text = string.Format("æœ€é«˜åˆ† {0}", m_hiscore);
     }
 
-    // ¸üĞÂµ¯Ò©
-    public void SetAmmo(int ammo)
+    // æ”¹å˜ç”Ÿå‘½å€¼UIæ˜¾ç¤º
+    public void ChangeLife(int life)
     {
-        m_ammo -= ammo;
-
-        // Èç¹ûµ¯Ò©Îª¸ºÊı£¬ÖØĞÂÌîµ¯
-        if (m_ammo <= 0)
-            m_ammo = 100 - m_ammo;
-        txt_ammo.text = m_ammo.ToString()+"/100";
+        m_text_life.text = string.Format("ç”Ÿå‘½ {0}", life);  // æ›´æ–°UI
+        if ( life<=0)
+        {
+            m_canvas_gameover.gameObject.SetActive(true); // å¦‚æœç”Ÿå‘½ä¸º0ï¼Œæ˜¾ç¤ºæ¸¸æˆå¤±è´¥UI
+        }
     }
-
-    // ¸üĞÂÉúÃü
-    public void SetLife(int life)
-    {
-        txt_life.text = life.ToString();
-        if ( life<=0)  // µ±Ö÷½ÇÉúÃüÎª0Ê±ÏÔÊ¾ÖØĞÂ¿ªÊ¼ÓÎÏ·°´Å¥
-            button_restart.gameObject.SetActive(true);
-    }
-
-
-
 }

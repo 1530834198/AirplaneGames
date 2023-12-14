@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6860DE6F-45C7-4690-2EBF-8F9412BF40ED}</ProjectGuid>
+    <ProjectGuid>{895189DF-3D47-9621-F6BE-5B8F27256FE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,24 +53,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AutoDestroy.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\EnemyRenderer.cs" />
+     <Compile Include="Assets\Scripts\EnemyRocket.cs" />
      <Compile Include="Assets\Scripts\EnemySpawn.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\MiniCamera.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\Spawn.cs" />
+     <Compile Include="Assets\Scripts\Rocket.cs" />
+     <Compile Include="Assets\Scripts\SuperEnemy.cs" />
+     <Compile Include="Assets\Scripts\TitleScreen.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c03_FPS/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c02_ShootingGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c03_FPS/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c02_ShootingGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c03_FPS/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c02_ShootingGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c03_FPS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/liu/Desktop/数媒/游戏引擎应用与开发/Unity手机游工开发4示例工程/c02_ShootingGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/software/Unity2018/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

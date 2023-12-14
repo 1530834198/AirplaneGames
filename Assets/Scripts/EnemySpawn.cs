@@ -1,58 +1,26 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("Game/EnemySpawn")]
+[AddComponentMenu("MyGame/EnemySpawn")]
 public class EnemySpawn : MonoBehaviour
 {
-    // µĞÈËµÄPrefab
-    public Transform m_enemy;
-
-    //Éú³ÉµÄµĞÈËÊıÁ¿
-    public int m_enemyCount = 0;
-
-    // µĞÈËµÄ×î´óÉú³ÉÊıÁ¿
-    public int m_maxEnemy = 3;
-
-    // Éú³ÉµĞÈËµÄÊ±¼ä¼ä¸ô
-    public float m_timer = 0;
-
-    protected Transform m_transform;
+    public Transform m_enemyPrefb; // æ•Œäººçš„Prefab
 
 	// Use this for initialization
 	void Start () {
-
-        m_transform = this.transform;
-
+        StartCoroutine(SpawnEnemy());  // å¯åŠ¨åç¨‹
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-        // Èç¹ûÉú³ÉµĞÈËµÄÊıÁ¿´ïµ½×î´óÖµ£¬Í£Ö¹Éú³ÉµĞÈË
-        if (m_enemyCount >= m_maxEnemy)
-            return;
-
-        // Ã¿¼ä¸ôÒ»¶¨Ê±¼ä
-        m_timer -= Time.deltaTime;
-        if (m_timer <= 0)
+    IEnumerator SpawnEnemy() // ä½¿ç”¨åç¨‹åˆ›å»ºæ•Œäºº
+    {
+        while (true)
         {
-            m_timer = Random.value * 15.0f;
-            if (m_timer < 5)
-                m_timer = 5;
-
-            // Éú³ÉµĞÈË
-            Transform obj=(Transform)Instantiate(m_enemy, m_transform.position, Quaternion.identity);
-
-            // »ñÈ¡µĞÈËµÄ½Ç±¾
-            Enemy enemy = obj.GetComponent<Enemy>();
-
-            // ³õÊ¼»¯µĞÈË
-            enemy.Init(this);
-
+            yield return new WaitForSeconds(Random.Range(5, 15));  // æ¯Nç§’ç”Ÿæˆä¸€ä¸ªæ•Œäºº
+            Instantiate(m_enemyPrefb, transform.position, Quaternion.identity);
         }
-	}
+    }
 
-    void  OnDrawGizmos () 
+    void OnDrawGizmos()
     {
         Gizmos.DrawIcon (transform.position, "item.png", true);
     }
