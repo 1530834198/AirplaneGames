@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Experimental.UIElements;
 
 [AddComponentMenu("MyGame/Player")]
 public class Player : MonoBehaviour {
@@ -23,6 +24,9 @@ public class Player : MonoBehaviour {
     
     protected Vector3 m_targetPos; // 目标位置
     public LayerMask m_inputMask; // 鼠标射线碰撞层
+
+    public GameObject exitPanel;//退出游戏界面
+    bool exitNum = false;
 
     // Use this for initialization
     void Start () {
@@ -70,6 +74,7 @@ public class Player : MonoBehaviour {
         //this.m_transform.Translate(new Vector3(moveh, 0, movev));
 
         MoveTo();
+        exitGame();
         // ...
         m_rocketTimer -= Time.deltaTime;
         if ( m_rocketTimer <= 0 )
@@ -131,6 +136,15 @@ public class Player : MonoBehaviour {
         Vector3 pos = Vector3.MoveTowards(this.m_transform.position, m_targetPos, m_speed * Time.deltaTime);
         // 更新当前位置
         this.m_transform.position = pos;
+    }
+    
+    //退出游戏
+    void exitGame(){
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            exitNum = !exitNum;
+            Time.timeScale = exitNum ? 0 : 1;
+            exitPanel.SetActive(exitNum);
+        }
     }
 
 
