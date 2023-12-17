@@ -143,7 +143,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 28
+  controlID: 70
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -333,10 +333,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 560b0000
-    m_LastClickedID: 2902
-    m_ExpandedIDs: 0000000060090000720a000000ca9a3b
+    scrollPos: {x: 0, y: 9}
+    m_SelectedIDs: 5a0b0000
+    m_LastClickedID: 2906
+    m_ExpandedIDs: 0000000064090000760a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -364,7 +364,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000060090000
+    m_ExpandedIDs: 0000000064090000760a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000900b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -479,24 +479,24 @@ MonoBehaviour:
     height: 421
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
-    scrollPos: {x: 0, y: 140}
-    m_SelectedIDs: 3077feff
-    m_LastClickedID: -100560
-    m_ExpandedIDs: 82affdff84affdff82ccfdfff8f0fdff4a50feff9c7ffeffb0f2ffff36f9ffffe6fbffff00000000382f0000642f0000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 7099feff14ccfeffa8cefeffd2fbffff00000000f20c00002e0d00004a0d0000560d0000823600003838000066380000a2380000e8380000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Canvas_gameover
-      m_OriginalName: Canvas_gameover
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 12132
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -532,14 +532,14 @@ MonoBehaviour:
     height: 421
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 939.5607680999999
+  lastFramingTime: 971.1899265
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 392.0685, y: 235.603, z: -4.24164}
+    m_Target: {x: 418.87506, y: 234.5978, z: 2.3036785}
     speed: 2
-    m_Value: {x: 392.0685, y: 235.603, z: -4.24164}
+    m_Value: {x: 418.87506, y: 234.5978, z: 2.3036785}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -571,15 +571,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 552.1649
+    m_Target: 514.2893
     speed: 2
-    m_Value: 552.1649
+    m_Value: 514.2893
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: -0.035212155, y: 0.9583977, z: -0.24861206, w: -0.13574275}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 

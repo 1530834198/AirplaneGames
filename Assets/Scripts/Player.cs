@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
     public LayerMask m_inputMask; // 鼠标射线碰撞层
 
     public GameObject exitPanel;//退出游戏界面
-    bool exitNum = false;
+    private bool exitNum = false;
 
     // Use this for initialization
     void Start () {
@@ -40,42 +40,9 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        ////纵向移动距离
-        //float movev = 0;
-
-        ////水平移动距离
-        //float moveh = 0;
-
-        ////按上键
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    movev += m_speed * Time.deltaTime;
-        //}
-
-        //// 按下键
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    movev -= m_speed * Time.deltaTime;
-        //}
-
-        //// 按左键
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    moveh -= m_speed * Time.deltaTime;
-        //}
-
-        //// 按右键
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    moveh += m_speed * Time.deltaTime;
-        //}
-
-        ////移动
-        //this.m_transform.Translate(new Vector3(moveh, 0, movev));
-
         MoveTo();
         exitGame();
-        // ...
+        
         m_rocketTimer -= Time.deltaTime;
         if ( m_rocketTimer <= 0 )
         {
@@ -145,6 +112,11 @@ public class Player : MonoBehaviour {
             Time.timeScale = exitNum ? 0 : 1;
             exitPanel.SetActive(exitNum);
         }
+    }
+
+    //设置退出的判断参数
+    public void setExitNum(bool exitNum){
+        this.exitNum = exitNum;
     }
 
 

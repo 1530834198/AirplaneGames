@@ -65,5 +65,10 @@ public class TitleScreen : MonoBehaviour
             yield return null;
         }
     }
+
+    //退出游戏
+    public void OnButtonGameQuit(){
+		Application.Quit();
+	}
     
 }
