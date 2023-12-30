@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     // 速度
     public float m_speed = 1;
     // 生命
-    public int m_life = 3;
+    public int m_life = 5;
 
     // 子弹prefab
     public Transform m_rocket;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag!="PlayerRocket")  // 如果与主角子弹以外的碰撞体相撞
+        if (other.tag!="PlayerRocket" && other.tag!="blood")  // 如果与主角子弹以外的碰撞体相撞
         {
             m_life -= 1;  // 减少生命
 
@@ -74,6 +74,12 @@ public class Player : MonoBehaviour {
                 Instantiate(m_explosionFX, m_transform.position, Quaternion.identity);
 
                 Destroy(this.gameObject);  // 自我销毁
+            }
+        }
+        if(other.gameObject.tag.CompareTo("blood")==0){
+            if(m_life < 5){
+                m_life += 1;
+            GameManager.Instance.ChangeLife(m_life);  // 更新UI
             }
         }
     }
@@ -118,6 +124,13 @@ public class Player : MonoBehaviour {
     public void setExitNum(bool exitNum){
         this.exitNum = exitNum;
     }
+
+    // //回血
+    // public void setLife(){
+    //     if(this.m_life<3){
+    //         this.m_life+=1;
+    //     }
+    // }
 
 
 }

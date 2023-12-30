@@ -5,7 +5,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
     public float m_speed = 1;   // 速度
-    public float m_life = 10;   // 生命
+    public float m_life = 100;   // 生命
     protected float m_rotSpeed = 30;    // 旋转速度
 
     public Transform m_explosionFX;

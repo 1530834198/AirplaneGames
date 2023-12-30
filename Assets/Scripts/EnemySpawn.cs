@@ -15,7 +15,8 @@ public class EnemySpawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5, 15));  // 每N秒生成一个敌人
+            float waitTime = Random.Range(5, 15);
+            yield return new WaitForSeconds(waitTime); // 每N秒生成一个敌人
             Instantiate(m_enemyPrefb, transform.position, Quaternion.identity);
         }
     }

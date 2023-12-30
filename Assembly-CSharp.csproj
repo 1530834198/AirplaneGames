@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Blood.cs" />
+     <Compile Include="Assets\Scripts\BloodSpawn.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyRenderer.cs" />
      <Compile Include="Assets\Scripts\EnemyRocket.cs" />
