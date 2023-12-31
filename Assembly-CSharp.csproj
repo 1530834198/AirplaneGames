@@ -54,7 +54,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Blood.cs" />
-     <Compile Include="Assets\Scripts\BloodSpawn.cs" />
+     <Compile Include="Assets\Scripts\Buff.cs" />
+     <Compile Include="Assets\Scripts\BuffSpawn.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyRenderer.cs" />
      <Compile Include="Assets\Scripts\EnemyRocket.cs" />
@@ -64,6 +65,7 @@
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
      <Compile Include="Assets\Scripts\SuperEnemy.cs" />
+     <Compile Include="Assets\Scripts\SuperRocket.cs" />
      <Compile Include="Assets\Scripts\TitleScreen.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/Project/Unity/AirplaneGames/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

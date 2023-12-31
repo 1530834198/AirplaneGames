@@ -62,7 +62,7 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag!="PlayerRocket" && other.tag!="blood")  // 如果与主角子弹以外的碰撞体相撞
+        if (other.tag!="PlayerRocket" && other.tag!="blood" && other.tag!="buff")  // 如果与主角子弹以外的碰撞体相撞
         {
             m_life -= 1;  // 减少生命
 
