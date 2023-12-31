@@ -25,4 +25,7 @@ public class SuperRocket : MonoBehaviour {
 
         Destroy(this.gameObject);
     }
+    // void Start(){
+    //     // transform.Rotate(180f, 0f, 0f);
+    // }
 }

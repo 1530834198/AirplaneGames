@@ -22,7 +22,6 @@ public class Rocket : MonoBehaviour {
     {
         if (other.tag!="Enemy")
             return;
-
         Destroy(this.gameObject);
     }
 }

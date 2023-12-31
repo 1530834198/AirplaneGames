@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 
     // 子弹prefab
     public Transform m_rocket;
+    public Transform m_superRocket;
     protected Transform m_transform;
 
     // 发射子弹计时器
@@ -27,6 +28,12 @@ public class Player : MonoBehaviour {
 
     public GameObject exitPanel;//退出游戏界面
     private bool exitNum = false;
+
+    private bool isSuperRocket = false;
+    private bool isStart = false;
+
+    private float startTime;//开始显示时间
+    private int coldTime = 8;//显示时间
 
     // Use this for initialization
     void Start () {
@@ -51,18 +58,33 @@ public class Player : MonoBehaviour {
             // 按空格键或鼠标左键发射子弹
             if ( Input.GetKey( KeyCode.Space ) || Input.GetMouseButton(0) )
             {
-                Instantiate( m_rocket, m_transform.position, m_transform.rotation );
+                if(!isSuperRocket){
+                    Instantiate( m_rocket, m_transform.position, m_transform.rotation );
+                }else{
+                    Instantiate( m_superRocket, m_transform.position, m_transform.rotation );
+                }
 
                 // 播放射击声音
                 m_audio.PlayOneShot(m_shootClip);
             }
         }
 
+        //超级子弹时间计算
+        if (isStart)
+        {
+            startTime += Time.deltaTime;
+            if (startTime > coldTime)
+            {
+                isSuperRocket = false;
+                isStart = false;
+                startTime = 0;
+            }
+        }
 	}
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag!="PlayerRocket" && other.tag!="blood" && other.tag!="buff")  // 如果与主角子弹以外的碰撞体相撞
+        if (other.tag!="PlayerRocket" && other.tag!="SuperRocket" && other.tag!="blood" && other.tag!="buff")  // 如果与主角子弹以外的碰撞体相撞
         {
             m_life -= 1;  // 减少生命
 
@@ -81,6 +103,10 @@ public class Player : MonoBehaviour {
                 m_life += 1;
             GameManager.Instance.ChangeLife(m_life);  // 更新UI
             }
+        }
+        if(other.gameObject.tag.CompareTo("buff")==0){
+            isSuperRocket = true;
+            isStart = true;
         }
     }
 

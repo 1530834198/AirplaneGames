@@ -59,23 +59,30 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "PlayerRocket") // 如果撞到主角子弹
+        if (other.tag == "PlayerRocket" || other.tag == "SuperRocket") // 如果撞到主角子弹或超级子弹
         {
+            // 根据子弹类型获取相应的组件
             Rocket rocket = other.GetComponent<Rocket>();
+            SuperRocket superRocket = other.GetComponent<SuperRocket>();
+
+            // 根据组件是否为 null 来执行相应的逻辑
             if (rocket != null)
             {
                 m_life -= rocket.m_power;  // 减少生命
-
-                if (m_life <= 0)
-                {
-                    GameManager.Instance.AddScore(m_point);  // 更新UI上的分数
-
-                    Instantiate(m_explosionFX, transform.position, Quaternion.identity);
-                    Destroy(this.gameObject);  // 自我销毁
-                }
             }
-        }
-        else if (other.tag == "Player")  // 如果撞到主角
+            else if (superRocket != null)
+            {
+                m_life -= superRocket.m_power;  // 减少生命
+            }
+
+            // 共同的逻辑
+            if (m_life <= 0)
+            {
+                GameManager.Instance.AddScore(m_point);  // 更新UI上的分数
+                Instantiate(m_explosionFX, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);  // 自我销毁
+            }
+        }else if (other.tag == "Player")  // 如果撞到主角
         {
             m_life = 0;
             Instantiate(m_explosionFX, transform.position, Quaternion.identity);
