@@ -84,7 +84,7 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag!="PlayerRocket" && other.tag!="SuperRocket" && other.tag!="blood" && other.tag!="buff")  // 如果与主角子弹以外的碰撞体相撞
+        if (other.tag=="Enemy" || other.tag=="EnemyRocket")  // 如果与主角子弹以外的碰撞体相撞
         {
             m_life -= 1;  // 减少生命
 
@@ -95,7 +95,11 @@ public class Player : MonoBehaviour {
                 // 当生命为0后，播放爆炸特效
                 Instantiate(m_explosionFX, m_transform.position, Quaternion.identity);
 
-                Destroy(this.gameObject);  // 自我销毁
+                this.gameObject.SetActive(false); // 自我销毁
+                bool isDie = GameObject.Find("GameManager").GetComponent<GameManager>().isDieByPlayer;
+                if(isDie){
+                    Destroy(this.gameObject);  // 自我销毁
+                }
             }
         }
         if(other.gameObject.tag.CompareTo("blood")==0){
@@ -150,13 +154,5 @@ public class Player : MonoBehaviour {
     public void setExitNum(bool exitNum){
         this.exitNum = exitNum;
     }
-
-    // //回血
-    // public void setLife(){
-    //     if(this.m_life<3){
-    //         this.m_life+=1;
-    //     }
-    // }
-
 
 }

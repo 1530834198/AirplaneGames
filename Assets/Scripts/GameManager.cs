@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour {
     
     public AudioClip m_musicClip;  // 背景音乐
     protected AudioSource m_Audio;  // 声音源
+    public GameObject playerPrefab;//player预制体
+    private bool resurrectionCount = false;
+    public bool isDieByPlayer = false;//player是否已经复活过一次又死了
 
     void Start () {
 
@@ -43,6 +46,9 @@ public class GameManager : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // 重新开始当前关卡
         });
+    
+        var resurrection_button = m_canvas_gameover.transform.Find("Resurrection_restart").GetComponent<Button>();  // 获取看广告复活游戏按钮
+        resurrection_button.onClick.AddListener(resurrectionBtn);// 绑定复活按钮事件
         m_canvas_gameover.gameObject.SetActive(false);  // 默认隐藏游戏失败UI
     }
  
@@ -66,5 +72,20 @@ public class GameManager : MonoBehaviour {
         {
             m_canvas_gameover.gameObject.SetActive(true); // 如果生命为0，显示游戏失败UI
         }
+    }
+
+    //复活按钮
+    void resurrectionBtn(){
+        if(!resurrectionCount){//如果复活过一次就不再显示这个按钮了
+            m_canvas_gameover.transform.Find("Resurrection_restart").GetComponent<Button>().gameObject.SetActive(false);
+            isDieByPlayer = true;
+        }
+        m_canvas_gameover.gameObject.SetActive(false);  // 默认隐藏游戏失败UI
+        if(m_player!=null){//角色存在
+            playerPrefab.SetActive(true);//显示角色
+            ChangeLife(1);//设置生命UI
+            m_player.m_life = 1;//给一条命
+        }
+        resurrectionCount = true;
     }
 }
