@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 [AddComponentMenu("MyGame/GameManager")]
 public class GameManager : MonoBehaviour {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;//player预制体
     private bool resurrectionCount = false;
     public bool isDieByPlayer = false;//player是否已经复活过一次又死了
+    // public VideoPlayer ad;//广告
+    public GameObject video;
 
     void Start () {
 
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour {
         var resurrection_button = m_canvas_gameover.transform.Find("Resurrection_restart").GetComponent<Button>();  // 获取看广告复活游戏按钮
         resurrection_button.onClick.AddListener(resurrectionBtn);// 绑定复活按钮事件
         m_canvas_gameover.gameObject.SetActive(false);  // 默认隐藏游戏失败UI
+
     }
  
     // 增加分数
@@ -80,6 +84,9 @@ public class GameManager : MonoBehaviour {
             m_canvas_gameover.transform.Find("Resurrection_restart").GetComponent<Button>().gameObject.SetActive(false);
             isDieByPlayer = true;
         }
+        //播放广告
+        Instantiate(video);
+        //复活
         m_canvas_gameover.gameObject.SetActive(false);  // 默认隐藏游戏失败UI
         if(m_player!=null){//角色存在
             playerPrefab.SetActive(true);//显示角色
@@ -88,4 +95,5 @@ public class GameManager : MonoBehaviour {
         }
         resurrectionCount = true;
     }
+
 }

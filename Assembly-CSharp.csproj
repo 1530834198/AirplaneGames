@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\SuperEnemy.cs" />
      <Compile Include="Assets\Scripts\SuperRocket.cs" />
      <Compile Include="Assets\Scripts\TitleScreen.cs" />
+     <Compile Include="Assets\Scripts\Video.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>D:/Project/Unity/AirplaneGames/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

@@ -34,8 +34,9 @@ public class Player : MonoBehaviour {
 
     private float startTime;//开始显示时间
     private int coldTime = 8;//显示时间
+    public bool isInvincible;//是否复活完成
+    private float disableTime = 0;//复活无敌时间
 
-    // Use this for initialization
     void Start () {
 
         m_transform = this.transform;
@@ -49,7 +50,10 @@ public class Player : MonoBehaviour {
 
         MoveTo();
         exitGame();
-        
+        if(isInvincible){
+            invincibleByPlayer(isInvincible);
+        }
+
         m_rocketTimer -= Time.deltaTime;
         if ( m_rocketTimer <= 0 )
         {
@@ -153,6 +157,28 @@ public class Player : MonoBehaviour {
     //设置退出的判断参数
     public void setExitNum(bool exitNum){
         this.exitNum = exitNum;
+    }
+
+    //战机复活后无敌3秒
+    void invincibleByPlayer(bool isInvincible){
+        if(isInvincible){
+            // 禁用碰撞体
+            gameObject.GetComponent<Collider>().enabled = false;
+            //变成无敌金色
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        }
+        // 记录禁用时间
+        disableTime += Time.deltaTime;
+        
+        Debug.Log(disableTime);
+        if (isInvincible && disableTime >= 3f)
+        {
+            // 重新启用碰撞体
+            gameObject.GetComponent<Collider>().enabled = true;
+            //颜色变回来
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+            isInvincible = false;
+        }
     }
 
 }
