@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LevelScreen : MonoBehaviour {
 
 	//退出至菜单
 	public void OnButtonGameToMenu(){
         SceneManager.LoadScene("start");
+		Time.timeScale = 1;
 	}
  
 	//NoBtn
