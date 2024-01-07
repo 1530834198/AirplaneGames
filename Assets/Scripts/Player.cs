@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 
 [AddComponentMenu("MyGame/Player")]
 public class Player : MonoBehaviour {
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour {
 
         MoveTo();
         exitGame();
+        exitPanelShortcut();
         if(isInvincible){
             invincibleByPlayer(isInvincible);
         }
@@ -157,6 +159,19 @@ public class Player : MonoBehaviour {
     //设置退出的判断参数
     public void setExitNum(bool exitNum){
         this.exitNum = exitNum;
+    }
+
+    //退出当前游戏快捷键
+    public void exitPanelShortcut(){
+        if(Input.GetKeyDown(KeyCode.Y)){
+            SceneManager.LoadScene("start");
+		    Time.timeScale = 1;
+        }
+        if(Input.GetKeyDown(KeyCode.N)){
+            setExitNum(false);
+            Time.timeScale = 1;
+            exitPanel.SetActive(false);
+        }
     }
 
     //战机复活后无敌3秒

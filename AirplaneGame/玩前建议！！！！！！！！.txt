@@ -1,0 +1,2 @@
+推荐使用Screen大小：800*600
+推荐使用Graphics quality：Beautiful
